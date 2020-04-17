@@ -11,6 +11,7 @@ jobs:
     environment:
       BLUEMIX_ORG: CircleCI
       BLUEMIX_SPACE: dev
+    working_directory: ~/drupal-circleci
     steps:
       - checkout:
       - run:
@@ -21,7 +22,9 @@ jobs:
           name: "Install Dependencies"
           command: |
             composer install
+            echo 'export PATH=$HOME/drupal-circleci/vendor/bin:$PATH' >> $BASH_ENV
+            source /home/circleci/.bashrc
       - run:
           name: "Site Setup"
           command: |
-            vendor/bin/drush site-install minimal --db-url="mysql://root:root@localhost/drupal"
+            drush site-install minimal --db-url="mysql://root:root@localhost/drupal" -y
