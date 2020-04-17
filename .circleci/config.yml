@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: cibuilds/drupal:latest
-      - image: mariadb:10.2
+      - image: circleci/mysql:latest
         environment:
           MYSQL_DATABASE: drupal
           MYSQL_ROOT_PASSWORD: root
@@ -18,7 +18,7 @@ jobs:
           command: |
             echo "127.0.0.1      db" >> /etc/hosts
             sleep 20
-            mysql -uroot -proot -h127.0.0.1 drupal < ../db/drupal-db.sql
+            mysql -uroot -proot -h127.0.0.1 drupal < db/drupal-db.sql
             service apache2 start
       - run:
           name: "Install Dependencies"
