@@ -31,4 +31,5 @@ jobs:
       - run:
           name: "Site Setup"
           command: |
-            vendor/bin/drush status
+            cd web
+            ../vendor/bin/drush status
