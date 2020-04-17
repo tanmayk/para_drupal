@@ -27,4 +27,4 @@ jobs:
       - run:
           name: "Install Dependencies"
           command: |
-            composer --version
+            composer install
