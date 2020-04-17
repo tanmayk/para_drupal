@@ -2,23 +2,27 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.2.0-apache
-      - image: circleci/mysql:5.7.29
-
+      - image: cibuilds/drupal:latest
+      - image: mariadb:10.2
+        environment:
+          MYSQL_DATABASE: drupal
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ROOT_HOST: "%"
+    environment:
+      BLUEMIX_ORG: CircleCI
+      BLUEMIX_SPACE: dev
+    working_directory: /project/app
     steps:
-      - checkout
-
-      - run: sudo apt update
-      - run: sudo docker-php-ext-install zip
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
-
-      - run: composer install -n --prefer-dist
-
-      - save_cache:
-          key: v1-dependencies-{{ checksum "composer.json" }}
-          paths:
-            - ./vendor
+      - checkout:
+          path: /project
+      - run:
+          name: "Setup Database & Server"
+          command: |
+            echo "127.0.0.1      db" >> /etc/hosts
+            sleep 20
+            mysql -uroot -proot -h127.0.0.1 drupal < ../db/drupal-db.sql
+            service apache2 start
+      - run:
+          name: "Install Dependencies"
+          command: |
+            composer install
