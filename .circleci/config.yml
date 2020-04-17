@@ -11,10 +11,8 @@ jobs:
     environment:
       BLUEMIX_ORG: CircleCI
       BLUEMIX_SPACE: dev
-    working_directory: /project/app
     steps:
       - checkout:
-          path: /project
       - run:
           name: "Setup Database & Server"
           command: |
