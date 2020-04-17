@@ -15,6 +15,12 @@ jobs:
     steps:
       - checkout:
       - run:
+          name: "Required Packages"
+          command: |
+            apt-get-update && apt-get-install mysql-client
+            composer global require drush/drush
+            composer global update
+      - run:
           name: "Updating Composer"
           command: |
             composer self-update
