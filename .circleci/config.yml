@@ -15,10 +15,6 @@ jobs:
     steps:
       - checkout:
       - run:
-          name: "Required Packages"
-          command: |
-            apt-get-install mysql-client
-      - run:
           name: "Updating Composer"
           command: |
             composer self-update
