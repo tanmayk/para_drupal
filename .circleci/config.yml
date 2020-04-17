@@ -16,7 +16,7 @@ jobs:
       - run:
           name: "Updating Composer"
           command: |
-            sudo composer self-update
+            composer self-update
       - run:
           name: "Setup Database & Server"
           command: |
