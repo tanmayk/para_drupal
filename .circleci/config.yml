@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: registry.gitlab.com/janpoboril/drupal-composer-docker:7.2-apache
-      - image: arey/mysql-client
+      - image: sami/mysql:latest
         environment:
           MYSQL_DATABASE: drupal
           MYSQL_ROOT_PASSWORD: root
