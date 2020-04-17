@@ -31,5 +31,4 @@ jobs:
       - run:
           name: "Site Setup"
           command: |
-            ls
-            vendor/bin/drush config-get system.site name
+            vendor/bin/drush status
