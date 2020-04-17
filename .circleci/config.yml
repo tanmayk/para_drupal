@@ -18,18 +18,10 @@ jobs:
           command: |
             composer self-update
       - run:
-          name: "Setup Database & Server"
-          command: |
-            echo "127.0.0.1      db" >> /etc/hosts
-            sleep 20
-            mysql -uroot -proot -h127.0.0.1 drupal < db/drupal-db.sql
-            service apache2 start
-      - run:
           name: "Install Dependencies"
           command: |
             composer install
       - run:
           name: "Site Setup"
           command: |
-            cd web
-            ../vendor/bin/drush status
+            vendor/bin/drush site-install minimal --db-url="mysql://root:root@localhost/drupal"
