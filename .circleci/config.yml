@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: registry.gitlab.com/janpoboril/drupal-composer-docker:7.2-apache
-      - image: circleci/mysql:5.7
+      - image: arey/mysql-client
         environment:
           MYSQL_DATABASE: drupal
           MYSQL_ROOT_PASSWORD: root
@@ -28,4 +28,5 @@ jobs:
       - run:
           name: "Site Setup"
           command: |
+            mysql --version
             drush site-install minimal --db-url="mysql://root:root@localhost/drupal" -y --verbose
