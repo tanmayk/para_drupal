@@ -19,7 +19,6 @@
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.8",
-        "drush/drush": "8.x",
         "osseed/para_seed": "dev-master"
     },
     "require-dev": {
