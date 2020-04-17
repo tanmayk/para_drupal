@@ -250,25 +250,6 @@ $databases = [];
  */
 
 /**
- * Salt for one-time login links, cancel links, form tokens, etc.
- *
- * This variable will be set to a random value by the installer. All one-time
- * login links will be invalidated if the value is changed. Note that if your
- * site is deployed on a cluster of web servers, you must ensure that this
- * variable has the same value on each server.
- *
- * For enhanced security, you may set this variable to the contents of a file
- * outside your document root; you should also ensure that this file is not
- * stored with backups of your database.
- *
- * Example:
- * @code
- *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
- * @endcode
- */
-$settings['hash_salt'] = '';
-
-/**
  * Deployment identifier.
  *
  * Drupal's dependency injection container will be automatically invalidated and
@@ -520,7 +501,7 @@ if ($settings['hash_salt']) {
  * See https://www.drupal.org/documentation/modules/file for more information
  * about securing private files.
  */
-# $settings['file_private_path'] = '';
+$settings['file_private_path'] = 'sites/default/files/private';
 
 /**
  * Temporary file path:
@@ -752,6 +733,6 @@ $settings['entity_update_backup'] = TRUE;
  * Keep this code block at the end of this file to take full effect.
  */
 #
-# if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-#   include $app_root . '/' . $site_path . '/settings.local.php';
-# }
+if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+  include $app_root . '/' . $site_path . '/settings.local.php';
+}
