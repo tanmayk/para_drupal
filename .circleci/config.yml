@@ -28,3 +28,7 @@ jobs:
           name: "Install Dependencies"
           command: |
             composer install
+      - run:
+          name: "Site Setup"
+          command: |
+            drush config-get system.site name
