@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: cibuilds/drupal:latest
-      - image: circleci/mysql:latest
+      - image: circleci/mysql:5.7
         environment:
           MYSQL_DATABASE: drupal
           MYSQL_ROOT_PASSWORD: root
