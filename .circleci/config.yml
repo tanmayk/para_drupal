@@ -28,5 +28,4 @@ jobs:
       - run:
           name: "Site Setup"
           command: |
-            mysql --version
-            drush site-install minimal --db-url="mysql://root:root@localhost/drupal" -y
+            drush site-install minimal --db-url="mysql://root:root@localhost/drupal" -y --verbose
