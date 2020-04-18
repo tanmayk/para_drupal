@@ -20,13 +20,6 @@ jobs:
           command: |
             composer install
       - run:
-          name: "Install Drush"
-          command: |
-            apk update && apk add wget
-            wget -O drush.phar https://github.com/drush-ops/drush-launcher/releases/download/0.4.2/drush.phar
-            chmod +x drush.phar
-            mv drush.phar /usr/local/bin/drush
-      - run:
           name: "Site Setup"
           command: |
             drush site-install minimal --db-url="mysql://root:root@localhost/drupal" -y --verbose
