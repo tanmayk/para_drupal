@@ -1,8 +1,6 @@
 version: 2
 jobs:
   build:
-    machine:
-      image: ubuntu-1604:201903-01
     docker:
       - image: registry.gitlab.com/janpoboril/drupal-composer-docker:7.2-apache
       - image: circleci/mysql:5.7
@@ -27,4 +25,5 @@ jobs:
       - run:
           name: "Site Setup"
           command: |
+            echo $OSTYPE
             drush site-install minimal --db-url="mysql://root:root@localhost/drupal" -y --verbose
