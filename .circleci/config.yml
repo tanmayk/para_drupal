@@ -1,13 +1,18 @@
 version: 2
 jobs:
   build:
+    environment:
+      DRUPAL_DB: drupal
+      DB_USER: root
+      DB_PWD: root
+      DB_HOST: 127.0.0.1
     docker:
       - image: drupaldocker/php:7.2-cli-2.x
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_DATABASE: drupal
-          MYSQL_ROOT_USERNAME: root
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: $DRUPAL_DB
+          MYSQL_ROOT_USERNAME: $DB_USER
+          MYSQL_ROOT_PASSWORD: $DB_PWD
           MYSQL_ROOT_HOST: "%"
     working_directory: ~/drupal-circleci
     steps:
@@ -24,4 +29,4 @@ jobs:
           name: "Site Setup"
           command: |
             cp .circleci/env/settings.local.php web/sites/default/
-            ./vendor/bin/drush site-install minimal --db-url="mysql://$MYSQL_ROOT_USERNAME:$MYSQL_ROOT_PASSWORD@$MYSQL_ROOT_HOST/$MYSQL_DATABASE" -y --verbose
+            ./vendor/bin/drush site-install minimal --db-url="mysql://$DB_USER:$DB_PWD@$DB_HOST/$DRUPAL_DB" -y --verbose
