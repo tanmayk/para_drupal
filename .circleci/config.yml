@@ -19,11 +19,13 @@ jobs:
           name: "Install Dependencies"
           command: |
             composer install
-            echo 'export PATH=$HOME/drupal-circleci/vendor/bin:$PATH' >> $BASH_ENV
-            source $HOME/.bashrc
-            cp .circleci/env/settings.local.php web/sites/default/
+      - run:
+          name: "Install Drush"
+          command: |
+            wget -O drush.phar https://github.com/drush-ops/drush-launcher/releases/download/0.4.2/drush.phar
+            chmod +x drush.phar
+            mv drush.phar /usr/local/bin/drush
       - run:
           name: "Site Setup"
           command: |
-            echo $OSTYPE
             drush site-install minimal --db-url="mysql://root:root@localhost/drupal" -y --verbose
