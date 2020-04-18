@@ -6,8 +6,9 @@ jobs:
       - image: circleci/mysql:5.7
         environment:
           MYSQL_DATABASE: drupal
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_ROOT_HOST: "%"
+          MYSQL_USERNAME: root
+          MYSQL_PASSWORD: root
+          MYSQL_HOST: "%"
     working_directory: ~/drupal-circleci
     steps:
       - checkout:
@@ -22,4 +23,5 @@ jobs:
       - run:
           name: "Site Setup"
           command: |
-            ./vendor/bin/drush site-install minimal --db-url="mysql://root:root@127.0.0.1/drupal" -y --verbose
+            cp .circleci/env/settings.local.php web/sites/default/
+            ./vendor/bin/drush site-install minimal --db-url="mysql://$MYSQL_USERNAME:$MYSQL_PASSWORD@MYSQL_HOST/$MYSQL_DATABASE" -y --verbose
