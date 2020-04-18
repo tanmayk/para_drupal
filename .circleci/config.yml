@@ -24,4 +24,4 @@ jobs:
           name: "Site Setup"
           command: |
             cp .circleci/env/settings.local.php web/sites/default/
-            ./vendor/bin/drush site-install minimal --db-url="mysql://$MYSQL_USERNAME:$MYSQL_PASSWORD@MYSQL_HOST/$MYSQL_DATABASE" -y --verbose
+            ./vendor/bin/drush site-install minimal --db-url="mysql://$MYSQL_USERNAME:$MYSQL_PASSWORD@$MYSQL_HOST/$MYSQL_DATABASE" -y --verbose
