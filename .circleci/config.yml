@@ -1,6 +1,8 @@
 version: 2
 jobs:
   build:
+    machine:
+      - image: ubuntu-1604:201903-01
     docker:
       - image: registry.gitlab.com/janpoboril/drupal-composer-docker:7.2-apache
       - image: circleci/mysql:5.7
@@ -8,9 +10,6 @@ jobs:
           MYSQL_DATABASE: drupal
           MYSQL_ROOT_PASSWORD: root
           MYSQL_ROOT_HOST: "%"
-    environment:
-      BLUEMIX_ORG: CircleCI
-      BLUEMIX_SPACE: dev
     working_directory: ~/drupal-circleci
     steps:
       - checkout:
