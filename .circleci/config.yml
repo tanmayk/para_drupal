@@ -28,5 +28,6 @@ jobs:
       - run:
           name: "Site Setup"
           command: |
+            echo "mysql://$DB_USER:$DB_PWD@$DB_HOST/$DRUPAL_DB"
             cp .circleci/env/settings.local.php web/sites/default/
             ./vendor/bin/drush site-install minimal --db-url="mysql://$DB_USER:$DB_PWD@$DB_HOST/$DRUPAL_DB" -y --verbose
