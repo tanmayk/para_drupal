@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: registry.gitlab.com/janpoboril/drupal-composer-docker:7.2-apache
+      - image: drupaldocker/php:7.2-cli-2.x
       - image: circleci/mysql:5.7
         environment:
           MYSQL_DATABASE: drupal
