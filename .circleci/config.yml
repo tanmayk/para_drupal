@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: drupaldocker/php:7.2-cli-2.x
+      - image: osseed/drupal8
       - image: circleci/mysql:5.7
         environment:
           MYSQL_DATABASE: drupal
@@ -12,10 +12,6 @@ jobs:
     working_directory: ~/drupal-circleci
     steps:
       - checkout:
-      - run:
-          name: "Updating Composer"
-          command: |
-            composer self-update
       - run:
           name: "Install Dependencies"
           command: |
