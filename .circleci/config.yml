@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: osseed/drupal8:latest
+      - image: osseed/drupal8:7.2
       - image: circleci/mysql:5.7
         environment:
           MYSQL_DATABASE: drupal
